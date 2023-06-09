@@ -1,0 +1,50 @@
+﻿@model List<CoreAndFood1.Data.Model.Category>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Category List</h2>
+<br />
+
+@*Food name search yeri için kullanıldı
+*@@using (Html.BeginForm())
+{
+    <p>
+        Food Name:@Html.TextBox("p")
+        <input type="submit" value="Find"/>
+
+    </p>
+}
+<table class="table table-striped table-dark">
+
+    <tr>
+
+        <th>ID</th>
+        <th>Category Name</th>
+        <th>Status</th>
+       
+        <th>Delete</th>
+        <th>Update</th>
+
+    </tr>
+    @foreach (var x in Model)
+    {
+
+
+        <tr>
+
+
+
+            <td>@x.CategoryID</td>
+            <td>@x.CategoryName</td>
+            <td>@x.Status</td>
+            
+            <td><a href="/Category/CategoryDelete/@x.CategoryID" class="btn btn-danger" type="button" style="background-color:red">Delete</a></td>
+            <td><a href="/Category/CategoryGet/@x.CategoryID" class="btn btn-danger" type="button" style="background-color:dodgerblue">Update</a></td>
+        </tr>
+    }
+
+</table>
+<a href="/Category/CategoryAdd/" class="btn btn-primary">Category Add</a>
